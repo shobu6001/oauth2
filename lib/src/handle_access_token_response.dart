@@ -67,6 +67,9 @@ Credentials handleAccessTokenResponse(http.Response response, Uri tokenEndpoint,
           '"$tokenEndpoint": unknown token type "${parameters['token_type']}"');
     }
 
+    parameters = parameters.map((key, value) =>
+        MapEntry(key, (value == false) ? null : value));
+
     var expiresIn = parameters['expires_in'];
     if (expiresIn != null) {
       if (expiresIn is String) {
